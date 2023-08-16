@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const ENV_API_KEY = import.meta.env.ENV_API_KEY
+const ENV_API_KEY = import.meta.env.VITE_API_KEY
 const BASE_URL = 'https://cek-id-pln-pasca-dan-pra-bayar.p.rapidapi.com/plnpostpaid'
 
 const options = {
@@ -13,13 +13,15 @@ const options = {
 }
 
 
-const fetchData = async(url) => {
+const fetchAPI = async(idpel) => {
    try{
-      const { data } = await axios.get(`${BASE_URL}/${url}`, options)
+      const { data } = await axios.get(`${BASE_URL}/${idpel}`, options)
       return data
    }catch(err) {
       console.log(err.message)
    }
 }
 
-export default fetchData 
+
+
+export default fetchAPI 
