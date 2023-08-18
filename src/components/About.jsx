@@ -2,7 +2,7 @@ import { moonlight } from "../assets"
 
 const About = () => {
    return (
-      <section className="flex flex-col sm:flex-row justify-center items-center w-full p-5 h-[380px]">
+      <section id="about" className="flex flex-col sm:flex-row justify-center items-center w-full p-5 h-[380px]">
          <div>
             <img src={moonlight} alt="about" className="w-[800px]" />
          </div>
