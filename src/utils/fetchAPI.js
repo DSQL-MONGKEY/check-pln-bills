@@ -23,5 +23,4 @@ const fetchAPI = async(idpel) => {
 }
 
 
-
 export default fetchAPI 
