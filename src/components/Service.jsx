@@ -1,22 +1,17 @@
 import { useDebounce } from "@uidotdev/usehooks"
-import { useState } from "react"
+import { useState, createContext, } from "react"
 
 import { CircularProgress } from "@mui/material"
 import fetchAPI from "../utils/fetchAPI"
 import CardResult from "./CardResult"
 
+export const ServiceDataContext = createContext() 
 const Service = () => {
    const [Idpel, setIdpel] = useState("")
-   const [isSearching, setIsSearching] = useState(false)
-   const [response, setResponse] = useState([{meter_number:"532411286263",
-   subscriber_name:"ABDUL KODIR",
-   Daya:"B1 / 2200",
-   Periode:"2022-11-01",
-   Denda:0,
-   Admin:2500,
-   Tagihan:236030,
-   stand_meter:"00013697 - 00013890"}])
+   const [isSearching, setIsSearching] = useState(true)
+   const [responseData, setResponseData] = useState([])
    const debouncedIdpel = useDebounce(Idpel, 300)
+
 
    const handleChange = (e) => {
       setIdpel(e.target.value)
@@ -28,30 +23,35 @@ const Service = () => {
 
       if(debouncedIdpel) {
          setIsSearching(true)
-         fetchAPI(debouncedIdpel)
-         .then(data => setResponse(data.data))
+         fetchAPI(Idpel)
+         .then(data => (
+            console.log(data.data),
+            setResponseData(data.data)
+         ))
       }
       setIsSearching(false)
    }
 
    return (
       <section id="cekit" className="w-full h-screen flex flex-col justify-center items-center gap-4">
-         <form onSubmit={handleSubmit} className="flex flex-col flex-wrap justify-center items-center gap-10">
+         <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col flex-wrap justify-center items-center gap-10">
             <input
                name="search-id"
                type="number"
                placeholder="Enter your ID"
-               onChange={handleChange}
+               onChange={(e) => handleChange(e)}
                className="p-2 border-2 rounded-lg"
             />
             <button type="submit" disabled={isSearching} className="border-2 py-2 px-6 rounded-md" >
-               {isSearching ? 
+               {!isSearching ? 
                   <CircularProgress color="primary" /> : 
                   'Search'
                }
             </button>
          </form>
-         <CardResult data={response}/>
+         <ServiceDataContext.Provider value={{ responseData, isSearching }}>
+            <CardResult />
+         </ServiceDataContext.Provider>
       </section>
    )
 }
