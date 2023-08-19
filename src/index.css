@@ -2,14 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
-
 .linear-white-gradient {
   background: rgb(255,255,255);
   background: linear-gradient(0deg, rgba(255,255,255,1) 77%, rgba(135,235,255,1) 100%);
+}
+
+/* fonts */
+@font-face {
+  font-family: poppins;
+  src: url(./fonts/Poppins/Poppins-Medium.ttf)
+}
+.font-poppins {
+font-family: 'poppins', sans-serif;
 }
