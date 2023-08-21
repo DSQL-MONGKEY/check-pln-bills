@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+
+// List item material UI
 import {
   List,
   ListItem,
@@ -19,28 +22,53 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import SpeedIcon from '@mui/icons-material/Speed';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 
-// context
-import { useContext } from "react"
-import { ServiceDataContext } from "./Service";
+import fetchAPI from "../utils/fetchAPI";
 
-const CardResult = () => {
-  const { isSearching } = useContext(ServiceDataContext)
-  const responseData = [{
-    Admin: 2500,
-    Daya: "R1 / 1300",
-    Denda: 0,
-    Periode : "2023-08-01",
-    Tagihan: 244401,
-    meter_number: "538711141151",
-    stand_meter : "00036088 - 00036249",
-    subscriber_name: "ALIH ITI BIN TIIN 1"
-  }]
+const CardResult = ({ searchId }) => {
+  const [responseData, setResponseData] = useState([])
+  const [isSearching, setIsSearching] = useState(false)
+
+  useEffect(() => {
+    if(searchId) {
+      setIsSearching(true)
+      fetchAPI(searchId).then(data => (
+        setResponseData(data.data)
+      ))
+    }
+      setIsSearching(false)
+  }, [searchId])
 
   let indonesianRupiah = Intl.NumberFormat('en-ID', {
     style: 'currency',
     currency: 'IDR'
   })
 
+  if(!isSearching) return (
+    <List 
+    sx={{ 
+      width: '100%',
+      maxWidth: 360,
+      bgcolor: 'white',
+      borderRadius: 10,
+      border: 3,
+      borderTop: 20,
+      borderColor: '#40F8FF'
+    }}>
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar sx={{ bgcolor: '#FF2E63' }}>
+            <ReportProblemIcon/>  
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText 
+        primary={'Not Found'} 
+        secondary={'please input the ID'} />
+      </ListItem>
+    </List>
+  )
+
+  const { meter_number, subscriber_name, Daya, Periode, Denda, Admin, Tagihan, stand_meter } = responseData
+  console.log(responseData)
   return (
     <List 
       sx={{ 
@@ -52,116 +80,102 @@ const CardResult = () => {
         borderTop: 20,
         borderColor: '#40F8FF'
       }}>
-      {isSearching ?
-        responseData.map(data => (
-          <Box key={data.subscriber_name}>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <NumbersIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Meter Number'} 
-              secondary={data.meter_number} />
-            </ListItem>
+        <Box>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <NumbersIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Meter Number'} 
+            secondary={meter_number} />
+          </ListItem>
 
-            <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" />
 
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <PersonIcon/>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Nama Pelanggan'} 
-              secondary={data.subscriber_name} />
-            </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <PersonIcon/>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Nama Pelanggan'} 
+            secondary={subscriber_name} />
+          </ListItem>
 
-            <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" />
 
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <BoltIcon/>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Daya'} 
-              secondary={data.Daya} />
-            </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <BoltIcon/>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Daya'} 
+            secondary={Daya} />
+          </ListItem>
 
-            <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" />
 
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <AccessTimeFilledIcon/>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Periode'} 
-              secondary={data.Periode} />
-            </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <AccessTimeFilledIcon/>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Periode'} 
+            secondary={Periode} />
+          </ListItem>
 
-            <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" />
 
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <AdminPanelSettingsIcon/>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Denda & Admin'} 
-              secondary={`Denda: ${data.Denda}, Admin: ${data.Admin}`} />
-            </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <AdminPanelSettingsIcon/>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Denda & Admin'} 
+            secondary={`Denda: ${Denda}, Admin: ${Admin}`} />
+          </ListItem>
 
-            <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" />
 
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <PaidIcon/>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Tagihan'} 
-              secondary={`${indonesianRupiah.format(data.Tagihan)}`} />
-            </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <PaidIcon/>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Tagihan'} 
+            secondary={`${indonesianRupiah.format(Tagihan)}`} />
+          </ListItem>
 
-            <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" />
 
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#F4D160' }}>
-                  <SpeedIcon/>
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText 
-              primary={'Stand-meter'} 
-              secondary={data.stand_meter} />
-            </ListItem>
-          </Box>
-        )) :
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <ReportProblemIcon/>
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Not Found" secondary="Please input the ID correctly" />
-        </ListItem>
-      } 
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#A0C49D' }}>
+                <SpeedIcon/>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText 
+            primary={'Stand-meter'} 
+            secondary={stand_meter} />
+          </ListItem>
+        </Box>
     </List>
   )
 }
 
 CardResult.propTypes = {
-  data: PropTypes.any
+  searchId: PropTypes.any
 }
 
 export default CardResult
-
-        
