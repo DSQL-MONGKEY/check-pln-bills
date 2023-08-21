@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { navLinks } from "../utils/constans"
+import { IconButton, Tooltip } from "@mui/material"
 
 
 
@@ -23,12 +24,16 @@ const Navbar = () => {
       <nav 
          className={`fixed flex z-50 justify-center top-0 w-full 
          ${show && 'hidden'} ease-in-out`}>
-         <div className={`flex px-4 mt-2 sm:mt-0 gap-10 backdrop-blur-sm rounded-full sm:rounded-none shadow sm:border-b-1 sm:shadow sm:w-full justify-center`}>
-            <ul className="flex gap-10 p-2">
+         <div className={`flex mt-2 sm:mt-0 gap-10 backdrop-blur-sm rounded-full sm:rounded-none shadow sm:border-b-1 sm:shadow sm:w-full justify-center`}>
+            <ul className="flex gap-11 justify-between">
                {navLinks.map(nav => (
-                  <li key={nav.title} className="p-1 sm:p-2">
-                     <a href={nav.href}>{nav.icon}</a>
-                  </li>
+                  <Tooltip key={nav.title} title={nav.title} arrow>
+                     <IconButton>
+                        <li>
+                           <a href={nav.href}>{nav.icon}</a>
+                        </li>
+                     </IconButton>
+                  </Tooltip>
                ))}
             </ul>
          </div>
