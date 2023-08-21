@@ -18,5 +18,12 @@
   src: url(./fonts/Poppins/Poppins-Medium.ttf)
 }
 .font-poppins {
-font-family: 'poppins', sans-serif;
+  font-family: 'poppins', sans-serif;
+}
+@font-face {
+  font-family: Paytone;
+  src: url(./fonts/PaytoneOne/PaytoneOne-regular.ttf)
+}
+.font-paytone {
+  font-family: 'Paytone', sans-serif;
 }
