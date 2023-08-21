@@ -5,7 +5,7 @@ import Service from "./components/Service"
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="app overflow-y-hidden">
       <Navbar/>
       <Hero/>
       <About/>
