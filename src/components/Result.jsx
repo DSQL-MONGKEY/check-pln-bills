@@ -7,8 +7,6 @@ import {
   ListItemAvatar,
   ListItemText,
   Avatar,
-  Divider,
-  Box
 } from "@mui/material"
 import PropTypes from 'prop-types'
 
@@ -24,17 +22,13 @@ import fetchAPI from "../utils/fetchAPI";
 
 const Result = ({ searchId }) => {
   const [responseData, setResponseData] = useState([])
-  const [isSearching, setIsSearching] = useState(false)
-  const [isError, setIsError] = useState([])
 
   useEffect(() => {
     if(searchId) {
-      setIsSearching(true)
       fetchAPI(searchId)
       .then(data => setResponseData(data?.data))
       .catch(err => console.log(err.err))
     }
-      setIsSearching(false)
   }, [searchId])
 
   let indonesianRupiah = Intl.NumberFormat('en-ID', {
@@ -42,16 +36,15 @@ const Result = ({ searchId }) => {
     currency: 'IDR'
   })
 
-  if(!responseData) return (
+  if(responseData.subscriber_name == undefined) return (
     <List 
     sx={{ 
       width: '100%',
       maxWidth: 500,
       bgcolor: 'white',
-      borderRadius: 10,
-      border: 3,
-      borderTop: 20,
-      borderColor: '#40F8FF'
+      borderRadius: 5,
+      border: 4,
+      borderColor: 'rgb(226 232 240)'
     }}>
       <ListItem>
         <ListItemAvatar>
@@ -65,10 +58,6 @@ const Result = ({ searchId }) => {
       </ListItem>
     </List>
   )
-
-
-  // const { meter_number, subscriber_name, Daya, Periode, Denda, Admin, Tagihan, stand_meter } = responseData
-  console.log(responseData)
 
   return (
     <div className="container bg-white w-5/10 md:w-1/2 rounded-xl border-4 border-slate-200 p-4">
@@ -105,21 +94,26 @@ const Result = ({ searchId }) => {
             <span className="bg-[#FF2E63] text-center text-white py-2.5 px-3 rounded-full"><ReportProblemIcon/></span>
             <div>
               <h4 className="">Admin</h4>
-              <p>{responseData?.Admin ? `Admin: ${indonesianRupiah.format(responseData.Admin)} Denda: ${indonesianRupiah.format(responseData.Denda)}` : '...'}</p>
+              <p>{responseData?.Admin ? 
+                  `Admin: ${indonesianRupiah.format(responseData.Admin)}
+                  Denda: ${indonesianRupiah.format(responseData.Denda)}` : 
+                  '...'}</p>
             </div>
         </div>
         <div className="flex gap-3 px-1 py-2 border-t-2 ">
             <span className="bg-[#FF2E63] text-center text-white py-2.5 px-3 rounded-full"><ReportProblemIcon/></span>
             <div>
               <h4 className="">Tagihan</h4>
-              <p>{responseData?.Tagihan ? indonesianRupiah.format (responseData.Tagihan) : '...'}</p>
+              <p>{responseData?.Tagihan ? 
+                  indonesianRupiah.format (responseData.Tagihan) : '...'}</p>
             </div>
         </div>
         <div className="flex gap-3 px-1 py-2 border-t-2 ">
             <span className="bg-[#FF2E63] text-center text-white py-2.5 px-3 rounded-full"><ReportProblemIcon/></span>
             <div>
               <h4 className="">Stand Meter</h4>
-              <p>{responseData?.stand_meter ? responseData.stand_meter : '...'}</p>
+              <p>{responseData?.stand_meter ? 
+                  responseData.stand_meter : '...'}</p>
             </div>
         </div>
       </div>
