@@ -1,7 +1,7 @@
 import { useDebounce } from "@uidotdev/usehooks"
 import { useState } from "react"
 
-import CardResult from "./CardResult"
+import Result from "./Result"
 
 const Service = () => {
    const [idpel, setIdpel] = useState("")
@@ -19,7 +19,7 @@ const Service = () => {
 
 
    return (
-      <section id="cekit" className="w-full h-screen bg-[#FF2E63] p-10">
+      <section id="cekit" className="w-full h-[1080px] bg-[#FF2E63] p-10">
          <div className="translate-y-20 flex flex-col sm:flex-row gap-5 sm:gap-10 text-white">
             <h2 className="text-6xl sm:text-[100px] font-paytone">Cekit.</h2>
             <p className="font-poppins">
@@ -27,20 +27,22 @@ const Service = () => {
             </p>
          </div>
          <div className="flex flex-col justify-center items-center gap-4 translate-y-20 mt-20">
-            <form onSubmit={handleSubmit} className="flex flex-col flex-wrap justify-center items-center gap-10 bg-slate-100">
-               <label htmlFor="input-id"></label>
-               <input
-                  name="input-id"
-                  type="text"
-                  placeholder="Enter your IDPEL"
-                  onChange={handleChange}
-                  className="p-2 border-2 rounded-lg"
-               />
-               <button type="submit" className="border-2 py-2 px-6 rounded-md" >
-                  SEARCH
+            <form onSubmit={handleSubmit} className="flex flex-col flex-wrap justify-center items-center gap-5  p-5 rounded-xl bg-white border-4 border-slate-200">
+               <div></div>
+               <div>
+                  <input
+                     name="input-id"
+                     type="text"
+                     placeholder="Masukkan ID Pelanggan"
+                     onChange={handleChange}
+                     className="py-2 px-3 border-2 rounded-lg w-[300px] md:w-[500px]"
+                  />
+               </div>
+               <button type="submit" className="py-2 px-6 rounded-md bg-[#FF2E63] hover:bg-[#ba264b] text-white duration-300 font-paytone ">
+                  Check
                </button>
             </form>
-            <CardResult searchId={debouncedIdpel} />
+            <Result searchId={debouncedIdpel} />
          </div>
       </section>
    )
