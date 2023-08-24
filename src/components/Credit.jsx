@@ -7,7 +7,7 @@ import { tiktok } from '../assets';
 
 const Credit = () => {
    return (
-      <section className="w-full h-screen p-7 md:p-10 bg-[#252A34]">
+      <section id="credit" className="w-full h-screen p-7 md:p-10 bg-[#252A34]">
          <div className="flex flex-col gap-5 justify-center items-center w-full">
             <div className='text-center mt-7'>
                <h2 className='font-paytone text-[#FF2E63] text-5xl md:text-[72px]'>

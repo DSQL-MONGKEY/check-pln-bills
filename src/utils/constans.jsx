@@ -20,9 +20,9 @@ const navLinks = [
       href: '#cekit',
    },
    {
-      title: 'Support',
+      title: 'Credit',
       icon: <AllInclusiveIcon/>,
-      href: '#support'
+      href: '#credit'
    }
 ]
 
