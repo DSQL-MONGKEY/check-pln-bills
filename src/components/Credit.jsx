@@ -36,7 +36,7 @@ const Credit = () => {
                   </a>
                </div>
                <div className='bg-[#F38181] p-2 rounded-lg'>
-                  <a href="">
+                  <a href="https://saweria.co/dimpFE">
                      <CardGiftcardIcon/>
                      dimpFE | Saweria
                   </a>
