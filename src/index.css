@@ -20,10 +20,19 @@
 .font-poppins {
   font-family: 'poppins', sans-serif;
 }
+
 @font-face {
   font-family: Paytone;
   src: url(./fonts/PaytoneOne/PaytoneOne-regular.ttf)
 }
 .font-paytone {
   font-family: 'Paytone', sans-serif;
+}
+
+@font-face {
+  font-family: outfit;
+  src: url(./fonts/Outfit/Outfit-Medium.ttf)
+}
+.font-outfit {
+  font-family: 'outfit', sans-serif;
 }
