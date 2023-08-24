@@ -23,7 +23,7 @@ const Service = () => {
          <div className="translate-y-20 flex flex-col sm:flex-row gap-5 sm:gap-10 text-white">
             <h2 className="text-6xl sm:text-[100px] font-paytone">Cekit.</h2>
             <p className="font-poppins">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam eveniet velit deleniti voluptate maxime in quas eius quod, pariatur modi enim voluptatem voluptates qui nesciunt accusamus dolorum debitis a! Odit.
+               This website can be an alternative way for you to check your postpaid PLN bill. All you have to do is enter your Customer-ID and wait a few seconds. need to remember if the results don`t come out, it means the quota for the request is up, bro
             </p>
          </div>
          <div className="flex flex-col justify-center items-center gap-4 translate-y-20 mt-20">
