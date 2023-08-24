@@ -1,5 +1,7 @@
-import moonlight from './moonlight.svg'
+import bgLight from "./bg-light.svg"
+import tiktok from "./tiktok.svg"
 
 export {
-   moonlight
+   bgLight,
+   tiktok
 }
