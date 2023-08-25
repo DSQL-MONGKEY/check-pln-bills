@@ -1,13 +1,13 @@
 import { useParallax } from "react-scroll-parallax"
 
 const Hero = () => {
-   const div = useParallax({ speed: -10, translateY: -20, scale: [1.5, 0.5]})
-   const text = useParallax({ speed: -10, translateY: -20, scale: [1.5, 0.5]})
+   
+   const text = useParallax({ speed: -10, translateY: -20,})
 
 
    return (
       <section className="w-full h-screen linear-white-gradient">
-         <div ref={div.ref} className="flex flex-col justify-center gap-5 p-5 py-20">
+         <div className="flex flex-col justify-center gap-5 p-5 py-20">
             <div ref={text.ref} className="mt-10 text-center translate-y-20 z-40">
                <h1>
                   <span className="text-3xl sm:text-7xl text-black font-poppins font-extrabold">The Alternative Way</span>
