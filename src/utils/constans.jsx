@@ -40,7 +40,7 @@ const cardContent = [
    {
       icon: <AutoGraphIcon/>,
       sub: 'Limit',
-      description: 'Because the API is not paid, the functionality on this web has a limit of 25 requests per day and not individuals'
+      description: 'Because the API is free, the functionality on this web has a limit of 25 requests per day and not individuals'
    },
 ]
 export { navLinks, cardContent }
