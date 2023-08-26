@@ -5,18 +5,13 @@ import Result from "./Result"
 
 const Service = () => {
    const [idpel, setIdpel] = useState("")
-   const debouncedIdpel = useDebounce(idpel, 500)
+   const debouncedIdpel = useDebounce(idpel, 1000)
 
-
-   const handleChange = (e) => {
-      setIdpel(e.target.value)
-   }
    const handleSubmit = (e) => {
       e.preventDefault()
       const formData = new FormData(e.target)
       setIdpel(formData.get("input-id"))
    }
-
 
    return (
       <section id="cekit" className="w-full h-[1080px] bg-[#FF2E63] p-10">
@@ -33,12 +28,11 @@ const Service = () => {
                   <input
                      name="input-id"
                      type="text"
-                     placeholder="Masukkan ID Pelanggan"
-                     onChange={handleChange}
-                     className="py-2 px-3 border-2 rounded-lg w-[300px] md:w-[500px]"
+                     placeholder="Masukkan ID Pelanggan (12 digit)"
+                     className="py-2 px-3 border-2 rounded-lg w-[300px] md:w-[500px]" autoComplete="off" required
                   />
                </div>
-               <button type="submit" className="py-2 px-6 rounded-md bg-[#FF2E63] hover:bg-[#ba264b] text-white duration-300 font-paytone ">
+               <button type="submit" className="py-2 px-6 rounded-md bg-[#FF2E63] hover:bg-[#ba264b]  text-white duration-300 font-paytone ">
                   Check
                </button>
             </form>
