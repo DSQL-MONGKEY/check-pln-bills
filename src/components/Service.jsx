@@ -32,7 +32,7 @@ const Service = () => {
                      className="py-2 px-3 border-2 rounded-lg w-[300px] md:w-[500px]" autoComplete="off" required
                   />
                </div>
-               <button type="submit" className="py-2 px-6 rounded-md bg-[#FF2E63] hover:bg-[#ba264b]  text-white duration-300 font-paytone ">
+               <button type="submit" className="py-2 px-6 rounded-md bg-[#FF2E63] hover:bg-[#ba264b] text-white duration-300 font-paytone ">
                   Check
                </button>
             </form>
